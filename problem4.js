@@ -18,9 +18,9 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 // not great runtime, but runs fast enough for 3 digit numbers. 4 digit numbers takes a noticeably longer time, but still runnable.
 
 function solve() {
-    let multiplicand = 9999;
-    let multiplier = 9999;
-    let minRange = 999;
+    let multiplicand = 999;
+    let multiplier = 999;
+    let minRange = multiplier / 10; // knocks a digit off
 
     let product = 0;    
     let max = 0;    
