@@ -13,6 +13,7 @@ What is the smallest positive number that is evenly divisible by all of the numb
 // runtime analysis - the complexity is increased by increasing the endRange
 // going from endRange 10 to 20 forced me to increase limit from 10,000 to 1000,000,000 which is a x5 magnitude increase in the numbers we have to check
 // I think runtime is O(n^2)
+
 function getSmallestNumberDivisableBySequentialRange(startRange, endRange) {
     let limit = 100000000000;    
     let divisor = 2;
