@@ -10,6 +10,7 @@ What is the 10 001st prime number?
 // since I like to visualize the primes, I decided to hold them in an array
 // I could decrease memory requirements by keeping track of the prime count we are on instead of an array
  
+// runtime analysis -  Since the inner loops terminate early, I believe the runtime complexity is o(n)ish
 
 let primeLimit = 1000000;
 
@@ -18,12 +19,12 @@ function findPrimeAt(position) {
     return primes[position - 1];
 }
 
-function generatePrimesUsingSieve(primeLimit) {
+function generatePrimesUsingSieve(primeLimit) { // o(n) + (o(n) + o(logn)) -> o(n)
     let sieve = [];
     let primes = [];    
 
     // fill sieve out with all trues
-    for (let i = 0; i < primeLimit; i++) {
+    for (let i = 0; i < primeLimit; i++) { // o(n)
         sieve.push(true);
     }    
 
@@ -33,7 +34,7 @@ function generatePrimesUsingSieve(primeLimit) {
     // find next prime, add to our list, and mark multiples as false in the sieve
     while (hasAnotherPrime) {
         hasAnotherPrime = false;
-        for (let i = currentPrime + 1; i < sieve.length; i++) {
+        for (let i = currentPrime + 1; i < sieve.length; i++) { // o(n)
             if (sieve[i] === true) {
                 hasAnotherPrime = true;
                 primes.push(i);
@@ -42,7 +43,7 @@ function generatePrimesUsingSieve(primeLimit) {
             }
         }
         // currentPrime * 2 so we don't mark our current prime as false
-        for (let i = currentPrime * 2; i < sieve.length; i += currentPrime) {
+        for (let i = currentPrime * 2; i < sieve.length; i += currentPrime) { //o(logn)
             sieve[i] = false;
         }
     }    
