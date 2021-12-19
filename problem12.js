@@ -30,11 +30,7 @@ What is the value of the first triangle number to have over five hundred divisor
 // mmmm a true "function" heh
 
 // runtime analysis - runs super slow when looking for 500 divisors.
-// I can make the algorithm smarter by changing how count is incremented
-// Then I wouldn't need to generate sequential triangle numbers. 
-// Instead I want to skip large sequences until I get above my target number
-// As soon as I'm above it, we need to jump back to our last highestDivisorcount
-// And increment count by 1 again
+// I can make the algorithm smarter by changing how much the sieve count is incremented
 
 function t(n) {
     return (n * (n + 1))/2; 
@@ -42,9 +38,7 @@ function t(n) {
 
 function getFirstTriangleNumberAbove(numberOfDivisors) {
     
-    let count = 1;
-    let skipAmount = 10;
-    let once = true;
+    let count = 1;    
     let divisorCount = 1;
     let triangleNumber = 1;
     let factors = [];
@@ -53,19 +47,11 @@ function getFirstTriangleNumberAbove(numberOfDivisors) {
     while (divisorCount <= numberOfDivisors) {        
         triangleNumber = t(count);        
         if (triangleNumber % 2 === 0) {
-            factors = getFactors(triangleNumber);
-            if (factors.length > numberOfDivisors && once) {
-                once = false;
-                count -= skipAmount; // go backwards
-                skipAmount = 1; // now inch forwards                 
-            }
+            factors = getFactors(triangleNumber);            
             divisorCount = factors.length;  
-            highestDivisorCount = divisorCount > highestDivisorCount ? divisorCount : highestDivisorCount;              
-            //console.log(`${triangleNumber}: ${factors}`)
-            console.log(`${triangleNumber} ${highestDivisorCount}`)         
+            highestDivisorCount = divisorCount > highestDivisorCount ? divisorCount : highestDivisorCount;                          
         }
-    
-        count += skipAmount;
+        count++;
     }
     return triangleNumber;
 }
