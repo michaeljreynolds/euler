@@ -43,7 +43,7 @@ function getLongestChainUnder(number) {
         currentNumber = startingNumber;
         currentSequence.push(currentNumber);
 
-        while (currentNumber !== 1) { // o(m)
+        while (currentNumber !== 1) { // o(m) -> O(1) * x lookups once we have cached sufficient numbers
             if (currentNumber % 2 === 0) {
                 if (memoize[currentNumber] === undefined) {
                     hold = currentNumber;
