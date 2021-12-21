@@ -12,6 +12,8 @@ How many such routes are there through a 20×20 grid?
 // step1) for each point, we can calculate how many paths get there by counting the paths above it and to the left
 // step2) return bottom right number in grid
 
+// runtime analysis - runs in linear o(n) time. Since we have a 2d array, we can assign the values n and m to the size of each dimension. We get o(n * m) or o(n);
+
 function initGrid(size) {
     let grid = [];
     let temp = [];
