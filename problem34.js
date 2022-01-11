@@ -9,11 +9,18 @@ Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 */
 
 // algorithm
+// write a memoized factorial funcion
+// start at n from n = 1 to limit
+// for every n, compute the sum of its digits factorialized
+// if sum === n, add to running sum
+// return running sum
 
 // runtime analysis
+// o(n) + o(k) = o(nk) => o(n)
+
 
 let hash = {}
-function factorial(n) {
+function factorial(n) { // o(n) since we memoized
     if (hash[n] !== undefined) {
         return hash[n];
     }        
@@ -31,8 +38,8 @@ function getSumOfAllDigitFactorials(limit) {
     let sum = 0;    
     let nums = [];
         
-    for (let i = 1; i < limit; i++) {
-        let sumFactorialDigits = getSumOfDigitFactorials(i);            
+    for (let i = 1; i < limit; i++) { // o(n)
+        let sumFactorialDigits = getSumOfDigitFactorials(i); // o(k)            
             if (sumFactorialDigits === i && i !== 1 && i !== 2) {
                 sum += i;
                 nums.push(i);
